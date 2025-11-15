@@ -1,1 +1,39 @@
+todos = []
 
+def add_todo():
+    new_todo = input('Enter new todo : ')
+    todos.append(new_todo.capitalize())
+
+def show_todos():
+    for todo in todos:
+        print(todo)
+
+def edit_todo():
+    user_index = int(input('Enter todo number : '))
+    while user_index > len(todos):
+        print('no todo with number ' + str(user_index) + ' found, try again...')
+        user_index = int(input('Enter todo number again : '))
+        if user_index < len(todos)-1:
+            break
+    todo_index = user_index -1
+    print('getting by list index : '+str(todo_index))
+    existing_todo = todos[todo_index]
+    print('updating ', existing_todo)
+    todos[todo_index] = input('Enter new todo : ')
+    print('added : ' + todos[todo_index])
+
+while True:
+    user_action  = input('Type add, show, edit or exit : ').strip()
+    match user_action:
+        case 'add':
+            add_todo()
+        case 'show':
+            show_todos()
+        case 'edit':
+            edit_todo()
+        case 'exit':
+            break
+        case _:
+            print('Unknown command, try again one of add, show, edit or exit :  ')
+
+print('Bye!')
